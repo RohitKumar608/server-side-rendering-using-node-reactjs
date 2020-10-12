@@ -1,14 +1,11 @@
 // Base Colors
-$txtCol: #4a4a4a;
-$black: #010000;
-$dark_blue: #003c76;
 $white: #ffffff;
-$orange: #f5a637;
-$red: #fe2424;
-$backGroundColor: #ededed;
+$backGroundColor: #f8f8f8;
 $lightGreen:#c9e79e;
 $underLineColor: #cac9c1;
 $darkGreen: #7ebe02;
+$tabletView: 700px;
+$deskTopView: 1000px;
 // mixins
 $browsers: "moz",
 "webkit",
@@ -18,4 +15,12 @@ $browsers: "moz",
     @each $browser in $browsers {
         -#{$browser}-border-radius: $value;
     }
+}
+
+@mixin card {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    background: white;
+    @include border-radius(0.4rem);
 }

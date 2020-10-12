@@ -1,0 +1,22 @@
+.card {
+    @include card;
+    padding: 1rem;
+    max-height: 20rem;
+    .card__name {
+        margin-bottom: 0.5rem;
+    }
+    .card__launch {
+        @extend .card__name;
+    }
+    .highlight {
+        color: #404eab;
+    }
+    .card__image {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        height: 14rem;
+        background-color: grey;
+        margin-bottom: 1rem;
+    }
+}

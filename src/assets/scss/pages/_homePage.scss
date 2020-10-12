@@ -26,12 +26,7 @@ h6 {
 
 .contents {
     .filters {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin: 1rem;
-        background: white;
-        @include border-radius(0.4rem);
+        @include card;
         .filters__title {
             margin: 0.2rem 1rem;
         }
@@ -61,6 +56,45 @@ h6 {
                     bottom: 0;
                     left: 0
                 }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $tabletView) {
+    .contents {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        .filters {
+            max-width: 22rem;
+            justify-content: flex-start;
+            .filter__title {
+                width: 20vw !important;
+            }
+        }
+        .cards__section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+@media screen and (min-width: $deskTopView) {
+    .contents {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        .filters {
+            max-width: 22rem;
+            justify-content: flex-start;
+            .filter__title {
+                width: 20vw !important;
+            }
+        }
+        .cards__section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            .card {
+                margin-left: 0;
             }
         }
     }
