@@ -1,4 +1,4 @@
 {
     "siteURL": "http://localhost:3000",
-    "axiosInstance_baseURL": "https://api.graphcms.com"
+    "axiosInstance_baseURL": "https://api.spaceXdata.com/v3/launches?limit=100"
 }
