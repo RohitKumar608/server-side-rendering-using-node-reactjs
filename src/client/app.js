@@ -1,19 +1,14 @@
-import React, {Component} from 'react';
-import {renderRoutes} from 'react-router-config';
-
-
+import React, { Component } from "react"
+import { renderRoutes } from "react-router-config"
+import ErrorBoundary from "./HOC/ErrorBoundary"
 class App extends Component {
-
-    render() {
-        return (
-            <>
-                {renderRoutes(this.props.route.routes)}
-            </>
-        );  
-    }
-
-};
+  render() {
+    return (
+      <ErrorBoundary>{renderRoutes(this.props.route.routes)}</ErrorBoundary>
+    )
+  }
+}
 
 export default {
-    component: App
-};
+  component: App,
+}

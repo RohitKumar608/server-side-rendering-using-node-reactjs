@@ -27,9 +27,7 @@ return `<html lang="en">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         ${helmet.title.toString()}
         <link rel="shortcut icon" href="${webConfig.siteURL}/assets/graphics/favicon.ico">
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
         <link href="./assets/css/styles.min.css" rel="stylesheet" type="text/css" />
     </head>
     <body ${helmet.bodyAttributes.toString()}>

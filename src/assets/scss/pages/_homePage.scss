@@ -1,5 +1,67 @@
-body.homePage {
-    .main {
-        min-height: auto;
+body {
+    background: $backGroundColor;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    .main__title {
+        margin: 1rem;
+        padding: 0;
+    }
+}
+
+.contents {
+    .filters {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1rem;
+        background: white;
+        @include border-radius(0.4rem);
+        .filters__title {
+            margin: 0.2rem 1rem;
+        }
+        .filter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            .filter__lists {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
+            }
+            .filter__title {
+                position: relative;
+                width: 46vw;
+                text-align: center;
+                margin-bottom: 0.5rem;
+                &::after {
+                    display: block;
+                    content: '';
+                    width: 100%;
+                    height: 1px;
+                    background: $underLineColor;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0
+                }
+            }
+        }
     }
 }
