@@ -2,7 +2,7 @@ import React, { PureComponent } from "react"
 import { Helmet } from "react-helmet"
 import { launchYears, launchStatus} from '../constants/FiltersTypes'
 import Filters from '../components/Filters/Filters'
-import Card from '../components/Card/Card'
+import Cards from '../components/Card/Cards'
 class HomePage extends PureComponent {
   head() {
     return (
@@ -19,22 +19,7 @@ class HomePage extends PureComponent {
         <div className='contents'>
           <Filters launchYears={launchYears} launchStatus={launchStatus} />
           <section className='cards__section'>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <Cards data={[]} />
           </section>
         </div>
       </div>
