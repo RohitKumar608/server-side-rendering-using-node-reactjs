@@ -16,7 +16,8 @@
     &:hover {
         background-color: $darkGreen;
     }
-    .active {
-        background-color: $darkGreen;
-    }
+}
+
+.selected {
+    background-color: $darkGreen;
 }

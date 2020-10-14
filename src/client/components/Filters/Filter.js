@@ -1,13 +1,24 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Button from '../Button/Button'
-const filter = ({ title, filters }) => {
+import Button from "../Button/Button"
+const filter = ({
+  title,
+  filters,
+  filterName,
+  handleFilters,
+  selectedValue,
+}) => {
   const createFilter = () => {
-    const selectedFilter = []
     const filtersTypes = filters.map(({ id, value }) => {
-      const isSelected = selectedFilter.includes(id)
+      const isSelected = selectedValue === value
       return (
-        <Button id={id} value={value} isSelected/>
+        <Button
+          handleFilters={handleFilters}
+          filterName={filterName}
+          id={id}
+          value={value}
+          isSelected={isSelected}
+        />
       )
     })
     return filtersTypes
@@ -27,5 +38,8 @@ filter.propsTypes = {
       value: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
     })
   ).isRequired,
+  filterName: PropTypes.string.isRequired,
+  handleFilters: PropTypes.func.isRequired,
+  selectedValue: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
 }
 export default filter

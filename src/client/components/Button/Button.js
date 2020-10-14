@@ -1,10 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react"
+import PropTypes from "prop-types"
 
-const button = ({id, isSelected, value, style, newCssClasses}) => (
-  <button key={id} className={`btn ${isSelected ? "Active" : ""} ${newCssClasses}`} style={{...style}}>
-      {typeof value !== "boolean" ? value : value.toString()}
-    </button>
+const button = ({ id, isSelected, value, style, newCssClasses, handleFilters, filterName }) => (
+  <button
+    onClick={() => handleFilters(filterName, value)}
+    key={id}
+    className={`btn ${isSelected ? "selected" : ""} ${newCssClasses && newCssClasses}`}
+    style={{ ...style }}
+  >
+    {typeof value !== "boolean" ? value : value.toString()}
+  </button>
 )
 
 button.propsTypes = {
@@ -12,10 +17,12 @@ button.propsTypes = {
   value: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   isSelected: PropTypes.bool.isRequired,
   newCssClasses: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  filterName: PropTypes.string.isRequired,
+  handleFilters: PropTypes.func.isRequired,
 }
 button.defaultProps = {
   isSelected: false,
-  newCssClasses: null
+  newCssClasses: '',
 }
-export default button;
+export default button
