@@ -1,22 +1,29 @@
-export const fetchPost = (postID) => async (dispatch, getState, api) => {
 
-    const _query = {
-        query: `{
-            Blog(slug: "${postID}"){
-                postTitle
-                post
-                imageURL
-            }
-        }`
-    };
+const FETCH_POST_START = 'FETCH_POST_START'
+const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS'
+const FETCH_POST_FAIL = 'FETCH_POST_FAIL'
 
-    await api.post('', _query).then(response => {
+export const fetchPosts = (query) => async (dispatch, getState, api) => {
+    dispatch({
+        type: FETCH_POST_START
+    })
+    await api.get(query).then(response => {
         dispatch({
-            type: 'FETCH_POST',
+            type: FETCH_POST_SUCCESS,
             payload: response.data
         })
     }).catch((err) => {
-        console.log('error', err);
+        dispatch({
+            type: FETCH_POST_FAIL,
+            error: err
+        })
     })
     
 };
+
+
+export const actions = {
+    FETCH_POST_START,
+    FETCH_POST_SUCCESS,
+    FETCH_POST_FAIL
+}

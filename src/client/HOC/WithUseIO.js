@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import useIO from '../Lazyloading/LazyLoading'
+import useIO from '../LazyLoading/LazyLoading'
 
 function withUseIO(Wrapped) {
   return function (props) {
     const [observer, setElements, entries] = useIO({
       threshold: 0,
-      rootMargin: '0px 200px 50px 0px',
+      rootMargin: '0px 0px 100px 0px',
       root: null,
     })
     useEffect(() => {

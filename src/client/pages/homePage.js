@@ -5,6 +5,9 @@ import Filters from "../components/Filters/Filters"
 import Cards from "../components/Card/Cards"
 import { withRouter } from "react-router"
 import PropTypes from "prop-types"
+import { connect } from 'react-redux';
+import {fetchPosts} from '../actions/index';
+
 class HomePage extends PureComponent {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -18,7 +21,8 @@ class HomePage extends PureComponent {
     land_success: null,
   }
   componentDidMount(){
-
+    const { getPosts } = this.props
+    getPosts()
   }
   handleFilters = (eventName, value) => {
     // If the user already applies the filter and clicks on the same filter again, we are removing that filter
@@ -53,6 +57,7 @@ class HomePage extends PureComponent {
   }
 
   render() {
+    const { posts } = this.props.postData
     return (
       <div className='main'>
         <h1 className='main__title'>SpaceX Launch Programs</h1>
@@ -64,7 +69,7 @@ class HomePage extends PureComponent {
             launchStatus={launchStatus}
           />
           <section className='cards__section'>
-            <Cards data={[]} />
+            <Cards data={posts} lazyClassName='lazy__load__images' />
           </section>
         </div>
       </div>
@@ -72,6 +77,27 @@ class HomePage extends PureComponent {
   }
 }
 
+const  mapStateToProps = (state) => {
+  return {
+      postData: state.post
+  };
+};
+
+function loadData (store){
+  return store.dispatch(fetchPosts());
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPosts: (query) => dispatch(fetchPosts(query)),
+  }
+}
+
+HomePage.defaultProps = {
+  postData: {}
+}
+
 export default {
-  component: withRouter(HomePage),
+  loadData: loadData,
+  component: connect(mapStateToProps, mapDispatchToProps)(withRouter(HomePage)),
 }
