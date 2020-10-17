@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import useIO from '../LazyLoading/LazyLoading'
+import useIO from '../components/LazyLoading/LazyLoading'
 import PropTypes from 'prop-types'
 
 function withUseIO(Wrapped) {
