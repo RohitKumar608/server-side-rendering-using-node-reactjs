@@ -7,7 +7,6 @@ import { withRouter } from "react-router"
 import PropTypes from "prop-types"
 import { connect } from 'react-redux';
 import {fetchPosts} from '../actions/index';
-
 class HomePage extends PureComponent {
   static propTypes = {
     match: PropTypes.object.isRequired,
