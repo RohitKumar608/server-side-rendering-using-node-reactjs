@@ -7,7 +7,7 @@ npm install or yarn install
 ```
 npm run dev
 ```
-npm run dev will start both server client side as will server side
+npm run dev will start both server client side as well as server side
 
 ```
 If some issue in running sever just terminate the batch and restart server again
