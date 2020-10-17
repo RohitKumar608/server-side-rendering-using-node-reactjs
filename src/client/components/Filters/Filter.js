@@ -18,6 +18,7 @@ const filter = ({
           id={id}
           value={value}
           isSelected={isSelected}
+          key={id}
         />
       )
     })

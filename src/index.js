@@ -1,20 +1,23 @@
-import express from 'express'
-import { matchRoutes } from 'react-router-config'
-import Routes from './client/routes'
-import renderer from './helpers/renderer'
-import createStore from './helpers/createStore'
+import express from "express"
+import { matchRoutes } from "react-router-config"
+import Routes from "./client/routes"
+import renderer from "./helpers/renderer"
+import createStore from "./helpers/createStore"
+import url from 'url'
 
 const port = process.env.PORT || 3000
 const app = express()
 
-app.use(express.static('build'))
+app.use(express.static("build"))
 
-app.get('*', (req, res) => {
+app.get("*", (req, res) => {
+  const ParamValue = req.params.param ? req.params.param : null
+  const queryObject = url.parse(req.url, true).search
   const store = createStore(req)
 
   const promises = matchRoutes(Routes, req.path)
     .map(({ route }) => {
-      return route.loadData ? route.loadData(store, req.path) : null
+      return route.loadData ? route.loadData(store, req.path, queryObject?.split('?')[1]) : null
     })
     .map((promise) => {
       if (promise) {

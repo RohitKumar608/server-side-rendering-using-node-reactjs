@@ -104,9 +104,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-function loadData(store, match) {
-  console.log(match)
-  return store.dispatch(fetchPosts())
+function loadData(store, path, queryObject) {
+  return store.dispatch(fetchPosts(queryObject))
 }
 
 const mapDispatchToProps = (dispatch) => {
