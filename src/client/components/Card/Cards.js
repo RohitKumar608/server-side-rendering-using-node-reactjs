@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from './Card'
 import withUseIO from '../../HOC/WithUseIO'
+import PropTypes from 'prop-types'
 
 const cards = ({ data, defaultImage, lazyClassName }) => {
   return (
@@ -27,12 +28,16 @@ const cards = ({ data, defaultImage, lazyClassName }) => {
           landingSuccess={rocket?.first_stage?.cores[0]?.land_success || false}
           lazyClassName={lazyClassName}
           rocket={rocket}
-          featured_img={`https://source.unsplash.com/collection/${index}/1600x900`}
+          // featured_img={`https://source.unsplash.com/collection/${index}/1600x900`}
           defaultImage={defaultImage}
         />
       )
     )
   )
 }
-
+cards.propTypes = {
+  data: PropTypes.array.isRequired,
+  defaultImage: PropTypes.string.isRequired,
+  lazyClassName: PropTypes.string.isRequired
+}
 export default withUseIO(cards)
