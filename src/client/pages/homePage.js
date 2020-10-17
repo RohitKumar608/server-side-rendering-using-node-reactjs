@@ -7,6 +7,8 @@ import { withRouter } from "react-router"
 import PropTypes from "prop-types"
 import { connect } from 'react-redux';
 import {fetchPosts} from '../actions/index';
+import Loader from '../components/Loader/Loader'
+
 class HomePage extends PureComponent {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -32,15 +34,16 @@ class HomePage extends PureComponent {
   }
   handleQueryParamsTriggerAction = () => {
     const { launch_year, launch_success, land_success } = this.state
-    const { history } = this.props
+    const { history, getPosts } = this.props
     let queryParams = ""
     if (launch_year !== null)
-      queryParams = setQueryParams(queryParams, 'launch_year', launch_year)
+      queryParams = this.setQueryParams(queryParams, 'launch_year', launch_year)
     if (launch_success !== null)
-      queryParams = setQueryParams(queryParams, 'launch_success', launch_success)
+      queryParams = this.setQueryParams(queryParams, 'launch_success', launch_success)
     if (land_success !== null)
-      queryParams = setQueryParams(queryParams, 'land_success', land_success)
+      queryParams = this.setQueryParams(queryParams, 'land_success', land_success)
     history.push(`?${queryParams}`);
+    getPosts(queryParams)
   }
   setQueryParams = (queryParams, filterKey, filterValue) => {
     return queryParams
@@ -56,9 +59,10 @@ class HomePage extends PureComponent {
   }
 
   render() {
-    const { posts } = this.props.postData
+    const { postData: {posts, isFetching} } = this.props
     return (
       <div className='main'>
+        {isFetching && <Loader />}
         <h1 className='main__title'>SpaceX Launch Programs</h1>
         <div className='contents'>
           <Filters
