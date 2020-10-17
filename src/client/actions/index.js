@@ -20,7 +20,7 @@ export const fetchPosts = (query='') => async (dispatch, getState, api) => {
         })
     })
     
-};
+}
 
 
 export const actions = {

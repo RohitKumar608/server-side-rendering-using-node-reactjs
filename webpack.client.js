@@ -1,6 +1,9 @@
 const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const fs = require('fs');
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = {
   // Tell webpack the root file of our
@@ -67,6 +70,25 @@ devtool: "source-map",
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: ["file-loader"],
+      },
+      {
+        test: /\.(js|mjs|jsx)$/,
+        enforce: "pre",
+        use: [
+          {
+            options: {
+              formatter: require.resolve("react-dev-utils/eslintFormatter"),
+              eslintPath: require.resolve("eslint"),
+              failOnError: false,
+              failOnWarning: false,
+            },
+            loader: require.resolve("eslint-loader"),
+            options: {
+              emitError: true
+            }
+          }
+        ],
+        include: resolveApp('src'),
       },
     ],
   },

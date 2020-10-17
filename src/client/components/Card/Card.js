@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 const card = (props) => {
   const {
@@ -10,7 +10,6 @@ const card = (props) => {
     landingSuccess,
     lazyClassName,
     defaultImage,
-    post,
     featured_img,
   } = props
 
@@ -26,7 +25,7 @@ const card = (props) => {
       <h3 className='card__name highlight'>
         {mission_name} #{flight_number}
       </h3>
-      <h3 className='card__name'>Mission Ids: {mission_id.join(",")}</h3>
+      <h3 className='card__name'>Mission Ids: {mission_id.join(',')}</h3>
       <h4 className='card__launch'>Launch Year: {launch_year}</h4>
       <h4 className='card__launch'>
         Successful Launch: {launch_success?.toString()}

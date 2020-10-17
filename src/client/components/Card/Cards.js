@@ -1,6 +1,6 @@
-import React from "react"
-import Card from "./Card"
-import withUseIO from "../../HOC/WithUseIO"
+import React from 'react'
+import Card from './Card'
+import withUseIO from '../../HOC/WithUseIO'
 
 const cards = ({ data, defaultImage, lazyClassName }) => {
   return (

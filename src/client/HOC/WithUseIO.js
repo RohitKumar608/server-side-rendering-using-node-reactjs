@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react'
 import useIO from '../LazyLoading/LazyLoading'
+import PropTypes from 'prop-types'
 
 function withUseIO(Wrapped) {
-  return function (props) {
+  return function hocImg(props) {
+    hocImg.propTypes = {
+      lazyClassName: PropTypes.string,
+      data: PropTypes.array,
+      isImg: PropTypes.bool
+    }
     const [observer, setElements, entries] = useIO({
       threshold: 0,
       rootMargin: '0px 0px 100px 0px',
@@ -37,6 +43,7 @@ function withUseIO(Wrapped) {
       'https://farm8.staticflickr.com/7615/16670240949_8d43db0e36_o.jpg'
     return <Wrapped defaultImage={defaultImage} {...props} />
   }
+
 }
 withUseIO.displayName = 'withUseIO'
 export default withUseIO

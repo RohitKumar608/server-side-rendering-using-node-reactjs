@@ -7,9 +7,9 @@ $darkGreen: #7ebe02;
 $tabletView: 700px;
 $deskTopView: 1000px;
 // mixins
-$browsers: "moz",
-"webkit",
-"o";
+$browsers: 'moz',
+'webkit',
+'o';
 @mixin border-radius($value) {
     border-radius: $value;
     @each $browser in $browsers {

@@ -1,20 +1,23 @@
-import React, { PureComponent } from "react"
-import { Helmet } from "react-helmet"
-import { launchYears, launchStatus } from "../constants/FiltersTypes"
-import Filters from "../components/Filters/Filters"
-import Cards from "../components/Card/Cards"
-import { withRouter } from "react-router"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
-import { fetchPosts } from "../actions/index"
-import Loader from "../components/Loader/Loader"
-import NoResult from "../components/NoResult/NoResult"
+import React, { PureComponent } from 'react'
+import { Helmet } from 'react-helmet'
+import { launchYears, launchStatus } from '../constants/FiltersTypes'
+import Filters from '../components/Filters/Filters'
+import Cards from '../components/Card/Cards'
+import { withRouter } from 'react-router'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { fetchPosts } from '../actions/index'
+import Loader from '../components/Loader/Loader'
+import NoResult from '../components/NoResult/NoResult'
 import { setQueryParams, extractQueryParams } from '../utils/QueryParams'
 class HomePage extends PureComponent {
   static propTypes = {
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
+    getPosts: PropTypes.func.isRequired,
+    posts: PropTypes.array.isRequired,
+    isFetching: PropTypes.bool,
   }
 
   state = {
@@ -27,9 +30,9 @@ class HomePage extends PureComponent {
       getPosts,
       location: { search },
     } = this.props
-    const queryParams = search.split("?")[1]
+    const queryParams = search.split('?')[1]
     const extractedQueryParams = extractQueryParams(queryParams)
-    this.setState({...extractedQueryParams})
+    this.setState({ ...extractedQueryParams })
     getPosts(queryParams)
   }
   handleFilters = (eventName, value) => {
@@ -42,37 +45,40 @@ class HomePage extends PureComponent {
   handleQueryParamsTriggerAction = () => {
     const { launch_year, launch_success, land_success } = this.state
     const { history, getPosts } = this.props
-    let queryParams = ""
+    let queryParams = ''
     if (launch_year !== null)
-      queryParams = setQueryParams(queryParams, "launch_year", launch_year)
+      queryParams = setQueryParams(queryParams, 'launch_year', launch_year)
     if (launch_success !== null)
       queryParams = setQueryParams(
         queryParams,
-        "launch_success",
+        'launch_success',
         launch_success
       )
     if (land_success !== null)
-      queryParams = setQueryParams(
-        queryParams,
-        "land_success",
-        land_success
-      )
+      queryParams = setQueryParams(queryParams, 'land_success', land_success)
     history.push(`search?${queryParams}`)
     getPosts(`&${queryParams}`)
   }
-  
+
   head() {
     return (
-      <Helmet bodyAttributes={{ class: "homePage" }}>
+      <Helmet bodyAttributes={{ class: 'homePage' }}>
+        <meta name='twitter:card' content='app' />
+        <meta name='twitter:site' content='@app' />
+        <meta name='twitter:creator' content='@app' />
+        <meta name='twitter:title' content='Spacex launch programm' />
+        <meta name='twitter:description' content='Spacex launch programm' />
+        <meta name='twitter:app:country' content='in' />
+        <meta name='al:ios:app_name' content='Spacex' />
+
         <title>{`Home Page - Spacex launch programs`}</title>
       </Helmet>
     )
   }
 
   render() {
-    const {
-      postData: { posts, isFetching },
-    } = this.props
+    const { posts, isFetching } = this.props
+    console.log(posts)
     return (
       <div className='main'>
         {isFetching && <Loader />}
@@ -100,7 +106,8 @@ class HomePage extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    postData: state.post,
+    posts: state.post.posts,
+    isFetching: state.post.isFetching,
   }
 }
 
@@ -115,7 +122,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 HomePage.defaultProps = {
-  postData: {},
+  post: [],
 }
 
 export default {

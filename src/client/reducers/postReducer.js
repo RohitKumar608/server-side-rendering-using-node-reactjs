@@ -1,4 +1,4 @@
-import { actions } from "../actions"
+import { actions } from '../actions'
 
 const initialState = {
   posts: [],
@@ -23,7 +23,7 @@ export default function (state = initialState, action) {
     case actions.FETCH_POST_FAIL:
       return {
         ...state,
-        error: payload.err,
+        error: action.err,
         isFetching: false,
       }
     default:
