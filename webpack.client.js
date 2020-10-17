@@ -81,11 +81,9 @@ devtool: 'source-map',
               eslintPath: require.resolve('eslint'),
               failOnError: false,
               failOnWarning: false,
+              emitError: true
             },
             loader: require.resolve('eslint-loader'),
-            options: {
-              emitError: true
-            }
           }
         ],
         include: resolveApp('src'),
