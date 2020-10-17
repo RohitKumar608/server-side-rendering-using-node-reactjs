@@ -78,7 +78,6 @@ class HomePage extends PureComponent {
 
   render() {
     const { posts, isFetching } = this.props
-    console.log(posts)
     return (
       <div className='main'>
         {isFetching && <Loader />}

@@ -19,7 +19,8 @@ export default (req, store, context) => {
 
 const helmet = Helmet.renderStatic()
 
-return `<html lang='en'>
+return `<!DOCTYPE html>
+<html lang='en'>
     <head>
         <meta charset='UTF-8'>
         ${helmet.meta.toString()}
@@ -27,12 +28,12 @@ return `<html lang='en'>
         <meta http-equiv='X-UA-Compatible' content='ie=edge'>
         ${helmet.title.toString()}
         <link rel='shortcut icon' href='${webConfig.siteURL}/assets/graphics/favicon.ico'>
-        <link href='https://fonts.googleapis.com/css2?family=Lato:wght@400700&display=swap' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap' rel='stylesheet'>
         <link href='./assets/css/styles.min.css' rel='stylesheet' type='text/css' />
     </head>
     <body ${helmet.bodyAttributes.toString()}>
         <div id='root'>${content}</div>
-        <script>
+        <script type='module'>
             window.INITIAL_STATE = ${serialize(store.getState())}
         </script>
         <script src='${webConfig.siteURL}/client_bundle.js'></script>
