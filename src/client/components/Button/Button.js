@@ -1,14 +1,14 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const button = ({ id, isSelected, value, style, newCssClasses, handleFilters, filterName }) => (
   <button
     onClick={() => handleFilters(filterName, value)}
     key={id}
-    className={`btn ${isSelected ? "selected" : ""} ${newCssClasses && newCssClasses}`}
+    className={`btn ${isSelected ? 'selected' : ''} ${newCssClasses && newCssClasses}`}
     style={{ ...style }}
   >
-    {typeof value !== "boolean" ? value : value.toString()}
+    {typeof value !== 'boolean' ? value : value.toString()}
   </button>
 )
 

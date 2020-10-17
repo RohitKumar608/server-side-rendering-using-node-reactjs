@@ -7,6 +7,7 @@
     }
     .card__launch {
         @extend .card__name;
+        text-transform: capitalize;
     }
     .highlight {
         color: #404eab;
