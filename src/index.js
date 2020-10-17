@@ -11,7 +11,6 @@ const app = express()
 app.use(express.static('build'))
 
 app.get('*', (req, res) => {
-  const ParamValue = req.params.param ? req.params.param : null
   const queryObject = url.parse(req.url, true).search
   const store = createStore(req)
 
