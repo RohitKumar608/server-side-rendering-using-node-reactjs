@@ -15,6 +15,16 @@ export default [
     ],
   },
   {
+    path: "/search",
+    exact: true,
+    ...App,
+    routes: [
+      {
+        ...HomePage,
+      },
+    ],
+  },
+  {
     path: "/",
     ...App,
     routes: [

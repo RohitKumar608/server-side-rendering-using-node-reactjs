@@ -1,4 +1,4 @@
 {
     "siteURL": "http://localhost:3000",
-    "axiosInstance_baseURL": "https://api.spaceXdata.com/v3/launches?limit=100"
+    "axiosInstance_baseURL": "https://api.spaceXdata.com/v3/launches"
 }

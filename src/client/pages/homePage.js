@@ -5,15 +5,16 @@ import Filters from "../components/Filters/Filters"
 import Cards from "../components/Card/Cards"
 import { withRouter } from "react-router"
 import PropTypes from "prop-types"
-import { connect } from 'react-redux';
-import {fetchPosts} from '../actions/index';
-import Loader from '../components/Loader/Loader'
-
+import { connect } from "react-redux"
+import { fetchPosts } from "../actions/index"
+import Loader from "../components/Loader/Loader"
+import NoResult from "../components/NoResult/NoResult"
+import { setQueryParams, extractQueryParams } from '../utils/QueryParams'
 class HomePage extends PureComponent {
   static propTypes = {
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
   }
 
   state = {
@@ -21,9 +22,15 @@ class HomePage extends PureComponent {
     launch_success: null,
     land_success: null,
   }
-  componentDidMount(){
-    const { getPosts } = this.props
-    getPosts()
+  componentDidMount() {
+    const {
+      getPosts,
+      location: { search },
+    } = this.props
+    const queryParams = search.split("?")[1]
+    const extractedQueryParams = extractQueryParams(queryParams)
+    this.setState({...extractedQueryParams})
+    getPosts(queryParams)
   }
   handleFilters = (eventName, value) => {
     // If the user already applies the filter and clicks on the same filter again, we are removing that filter
@@ -37,29 +44,35 @@ class HomePage extends PureComponent {
     const { history, getPosts } = this.props
     let queryParams = ""
     if (launch_year !== null)
-      queryParams = this.setQueryParams(queryParams, 'launch_year', launch_year)
+      queryParams = setQueryParams(queryParams, "launch_year", launch_year)
     if (launch_success !== null)
-      queryParams = this.setQueryParams(queryParams, 'launch_success', launch_success)
+      queryParams = setQueryParams(
+        queryParams,
+        "launch_success",
+        launch_success
+      )
     if (land_success !== null)
-      queryParams = this.setQueryParams(queryParams, 'land_success', land_success)
-    history.push(`?${queryParams}`);
-    getPosts(queryParams)
+      queryParams = setQueryParams(
+        queryParams,
+        "land_success",
+        land_success
+      )
+    history.push(`search?${queryParams}`)
+    getPosts(`&${queryParams}`)
   }
-  setQueryParams = (queryParams, filterKey, filterValue) => {
-    return queryParams
-    ? `${queryParams}&${filterKey}=${filterValue}`
-    : `${filterKey}=${filterValue}`
-  }
+  
   head() {
     return (
       <Helmet bodyAttributes={{ class: "homePage" }}>
-        <title>{`Home Page - React Starter Kit`}</title>
+        <title>{`Home Page - Spacex launch programs`}</title>
       </Helmet>
     )
   }
 
   render() {
-    const { postData: {posts, isFetching} } = this.props
+    const {
+      postData: { posts, isFetching },
+    } = this.props
     return (
       <div className='main'>
         {isFetching && <Loader />}
@@ -71,23 +84,29 @@ class HomePage extends PureComponent {
             launchYears={launchYears}
             launchStatus={launchStatus}
           />
-          <section className='cards__section'>
-            <Cards data={posts} lazyClassName='lazy__load__images' />
-          </section>
+
+          {posts?.length === 0 ? (
+            <NoResult />
+          ) : (
+            <section className='cards__section'>
+              <Cards data={posts} lazyClassName='lazy__load__images' />
+            </section>
+          )}
         </div>
       </div>
     )
   }
 }
 
-const  mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
-      postData: state.post
-  };
-};
+    postData: state.post,
+  }
+}
 
-function loadData (store){
-  return store.dispatch(fetchPosts());
+function loadData(store, match) {
+  console.log(match)
+  return store.dispatch(fetchPosts())
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -97,7 +116,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 HomePage.defaultProps = {
-  postData: {}
+  postData: {},
 }
 
 export default {
