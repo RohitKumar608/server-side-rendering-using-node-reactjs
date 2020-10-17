@@ -17,15 +17,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     publicPath: './build',
   },
-  devServer: {
-    contentBase: 'public',
-    overlay: true,
-    stats: {
-      colors: true
-    }
-},
-devtool: 'source-map',
-  module: {
+   module: {
     rules: [
       {
         test: /\.m?js$/,

@@ -28,8 +28,8 @@ return `<!DOCTYPE html>
         <meta http-equiv='X-UA-Compatible' content='ie=edge'>
         ${helmet.title.toString()}
         <link rel='shortcut icon' href='${webConfig.siteURL}/assets/graphics/favicon.ico'>
-        <link href='https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap' rel='stylesheet'>
-        <link href='./assets/css/styles.min.css' rel='stylesheet' type='text/css' />
+        <link href='https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap' onload="this.media='all'" rel='stylesheet'>
+        <link href='./assets/css/styles.min.css' rel='stylesheet' type='text/css' media="print"  onload="this.media='all'" />
     </head>
     <body ${helmet.bodyAttributes.toString()}>
         <div id='root'>${content}</div>
