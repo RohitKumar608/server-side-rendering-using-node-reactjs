@@ -61,7 +61,7 @@ devtool: 'source-map',
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader,  'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
