@@ -15,7 +15,7 @@ const cards = ({ data, defaultImage, lazyClassName }) => {
           mission_id,
           flight_number,
           rocket,
-          flickr_images
+          links
         }
       ) => (
         <Card
@@ -28,7 +28,7 @@ const cards = ({ data, defaultImage, lazyClassName }) => {
           landingSuccess={rocket?.first_stage?.cores[0]?.land_success || false}
           lazyClassName={lazyClassName}
           rocket={rocket}
-          featured_img={flickr_images?.length && flickr_images[0]}
+          featured_img={links?.flickr_images?.length && links?.flickr_images[0]}
           defaultImage={defaultImage}
         />
       )

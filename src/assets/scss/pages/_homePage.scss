@@ -59,6 +59,15 @@ h6 {
             }
         }
     }
+    .developed_by {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h3 {
+            background: white;
+            padding: 1rem;
+        }
+    }
 }
 
 @media screen and (min-width: $tabletView) {

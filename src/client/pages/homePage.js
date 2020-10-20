@@ -90,13 +90,18 @@ class HomePage extends PureComponent {
             launchStatus={launchStatus}
           />
 
-          {posts?.length === 0 ? (
+          {!isFetching && posts?.length === 0 ? (
             <NoResult />
           ) : (
             <section className='cards__section'>
               <Cards data={posts} lazyClassName='lazy__load__images' />
             </section>
           )}
+        </div>
+        <div className='developed_by'>
+          <h3>
+            Developed By: Rohit Kumar
+          </h3>
         </div>
       </div>
     )
