@@ -99,7 +99,7 @@ class HomePage extends PureComponent {
           )}
         </div>
         <div className='developed_by'>
-          <h3>
+          <h3 className='developer__name'>
             Developed By: Rohit Kumar
           </h3>
         </div>
