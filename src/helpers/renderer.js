@@ -36,7 +36,7 @@ return `<!DOCTYPE html>
         <script type='module'>
             window.INITIAL_STATE = ${serialize(store.getState())}
         </script>
-        <script src='${webConfig.siteURL}/client_bundle.js'></script>
+        <script src='${webConfig.siteURL}/client_bundle.js' async></script>
     </body>
 </html>`
 }

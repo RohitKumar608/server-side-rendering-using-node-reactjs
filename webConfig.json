@@ -1,4 +1,4 @@
 {
-    "siteURL": "http://localhost:3000",
+    "siteURL": "https://ssr-deployment.herokuapp.com",
     "axiosInstance_baseURL": "https://api.spaceXdata.com/v3/launches"
 }
